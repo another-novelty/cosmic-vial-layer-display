@@ -89,6 +89,8 @@ layers = [
 
 Layers without a name fall back to `Layer N`. See [applet/data/config.toml.example](applet/data/config.toml.example) for a full example.
 
+> **Tip:** After editing the config file, reload it instantly via the right-click menu (Reload Config) — no restart required.
+
 ### Environment variables
 
 | Variable | Default | Description |
@@ -100,7 +102,10 @@ Layers without a name fall back to `Layer N`. See [applet/data/config.toml.examp
 ## Applet behaviour
 
 - **Right-click menu** — pause/resume polling and reload the config file without restarting
-- **Vial compatibility** — polling is automatically suspended while the Vial app is open, preventing HID command conflicts
+- **Vial compatibility** — polling should be automatically suspended while the Vial app is open, preventing HID command conflicts
+
+> **Note:** If you need to open the Vial app while the applet is running, pause polling first via the right-click menu (Pause Polling) to avoid HID conflicts. Resume once you are done in Vial.
+
 - **Display states** — `disconnected` (keyboard not found), `no firmware support` (layer query unhandled by firmware), `paused` (polling paused by user)
 
 ## Future: native Vial support
