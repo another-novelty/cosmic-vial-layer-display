@@ -5,6 +5,9 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build applet
@@ -37,7 +40,7 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             applet/target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('applet/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-${{ hashFiles('applet/Cargo.lock', 'applet/Cargo.toml') }}
           restore-keys: |
             ${{ runner.os }}-cargo-
 
