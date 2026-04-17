@@ -44,6 +44,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cargo-
 
+      - name: Sync Cargo.toml version with tag
+        working-directory: applet
+        run: |
+          TAG_VERSION="${{ github.ref_name }}"
+          TAG_VERSION="${TAG_VERSION#v}"
+          CARGO_VERSION=$(grep '^version' Cargo.toml | head -1 | sed 's/version = "\(.*\)"/\1/')
+          HIGHER=$(printf '%s\n' "$TAG_VERSION" "$CARGO_VERSION" | sort -rV | head -1)
+          echo "Tag version: $TAG_VERSION, Cargo.toml version: $CARGO_VERSION, using: $HIGHER"
+          if [ "$CARGO_VERSION" != "$HIGHER" ]; then
+            sed -i "s/^version = \"$CARGO_VERSION\"/version = \"$HIGHER\"/" Cargo.toml
+            echo "Updated Cargo.toml version to $HIGHER"
+          fi
+
       - name: Build release binary
         working-directory: applet
         run: cargo build --release
