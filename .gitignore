@@ -1,0 +1,5 @@
+# Rust
+applet/target/
+
+# Python venv
+.venv/

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Vial Layer Indicator
+Comment=Shows the active layer of a Vial/QMK keyboard in the COSMIC panel
+Exec=vial-layer
+Icon=input-keyboard
+Type=Application
+Categories=COSMIC;
+NoDisplay=true
+X-CosmicApplet=true

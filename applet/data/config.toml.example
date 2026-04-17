@@ -1,0 +1,16 @@
+# ~/.config/vial-layer/config.toml
+#
+# Names for each layer, by index. Layers beyond this list (or with an empty
+# string) fall back to showing their number (0, 1, 2, …).
+#
+# You can also point to a different file at runtime:
+#   VIAL_LAYER_CONFIG=/path/to/config.toml vial-layer
+
+layers = [
+    "Base",   # 0
+    "Nav",    # 1
+    "Sym",    # 2
+    "Num",    # 3
+    "Fun",    # 4
+    "Adj",    # 5
+]

@@ -1,0 +1,4 @@
+# Raw HID access for a Vial/QMK keyboard (vial-layer applet)
+# Replace XXXX with your actual VID and PID — run ../find_keyboard.sh to discover them.
+# After editing, run: sudo cp 99-vial-hid.rules /etc/udev/rules.d/ && sudo udevadm control --reload
+KERNEL=="hidraw*", ATTRS{idVendor}=="XXXX", ATTRS{idProduct}=="XXXX", MODE="0660", GROUP="input", TAG+="uaccess"
