@@ -103,6 +103,10 @@ Layers without a name fall back to `Layer N`. See [applet/data/config.toml.examp
 - **Vial compatibility** — polling is automatically suspended while the Vial app is open, preventing HID command conflicts
 - **Display states** — `disconnected` (keyboard not found), `no firmware support` (layer query unhandled by firmware), `paused` (polling paused by user)
 
+## Future: native Vial support
+
+[vial-gui issue #310](https://github.com/vial-kb/vial-gui/issues/310) tracks a feature request to expose the active layer (and other host-side data) natively over the Vial protocol. If that lands, the firmware patch in this repo would become unnecessary — the applet could query the layer without any custom `layer_report.c`. Until then, `firmware/apply.sh` is required.
+
 ## How it works
 
 `apply.sh` adds `RAW_ENABLE = yes` and `layer_report.c` to the vial-qmk keymap.
