@@ -1,0 +1,54 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - dependabot
+  categories:
+    - title: "✨ New Features"
+      labels:
+        - feature
+        - enhancement
+      include:
+        commit_messages:
+          - "^feat"
+          - "^feat!"
+    - title: "🐛 Bug Fixes"
+      labels:
+        - bug
+        - fix
+      include:
+        commit_messages:
+          - "^fix"
+          - "^bugfix"
+    - title: "⚡ Performance"
+      labels:
+        - performance
+      include:
+        commit_messages:
+          - "^perf"
+    - title: "📚 Documentation"
+      labels:
+        - documentation
+        - docs
+      include:
+        commit_messages:
+          - "^docs"
+    - title: "🔧 Maintenance"
+      labels:
+        - chore
+        - refactor
+        - ci
+        - build
+      include:
+        commit_messages:
+          - "^chore"
+          - "^refactor"
+          - "^ci"
+          - "^build"
+          - "^style"
+          - "^test"
+    - title: "🔒 Security"
+      labels:
+        - security
+    - title: "📦 Other Changes"
