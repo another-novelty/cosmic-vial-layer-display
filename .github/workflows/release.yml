@@ -1,0 +1,56 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build applet
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwayland-dev \
+            libxkbcommon-dev \
+            libudev-dev \
+            libinput-dev \
+            libdbus-1-dev \
+            libpipewire-0.3-dev \
+            libclang-dev \
+            pkg-config
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Cargo registry and build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            applet/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('applet/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Build release binary
+        working-directory: applet
+        run: cargo build --release
+
+      - name: Rename binary with version tag
+        run: |
+          cp applet/target/release/vial-layer vial-layer-${{ github.ref_name }}-linux-x86_64
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: vial-layer-${{ github.ref_name }}-linux-x86_64
+          generate_release_notes: true
