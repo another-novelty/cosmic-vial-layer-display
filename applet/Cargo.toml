@@ -12,7 +12,7 @@ libcosmic = { git = "https://github.com/pop-os/libcosmic", features = ["applet",
 hidapi = "2.6"
 tokio = { version = "1", features = ["rt-multi-thread", "time"] }
 serde = { version = "1", features = ["derive"] }
-toml = "0.8"
+toml = "1.1"
 
 [profile.release]
 opt-level = "s"
